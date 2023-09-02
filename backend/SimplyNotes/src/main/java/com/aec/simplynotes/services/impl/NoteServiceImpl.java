@@ -63,9 +63,9 @@ public class NoteServiceImpl extends BasicServiceImpl<NoteEntity, String, INoteR
      * @throws ResponseStatusException If no notes are found, an exception with HTTP status 404 (NOT_FOUND) is thrown.
      */
     @Override
-    public Page<NoteDto> getCategories(Pageable pageable) {
+    public Page<NoteDto> getNotes(Pageable pageable) {
 
-        List<NoteEntity> notes = repository.findAll();
+        List<NoteEntity> notes = repository.searchAllNonDeleted();
         List<NoteDto> response;
 
         if(!notes.isEmpty()){
@@ -80,5 +80,7 @@ public class NoteServiceImpl extends BasicServiceImpl<NoteEntity, String, INoteR
         }
 
     }
+
+
 
 }
