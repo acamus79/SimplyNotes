@@ -11,6 +11,8 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import jakarta.persistence.*;
+
+import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 @Entity
@@ -18,11 +20,12 @@ import java.time.LocalDateTime;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@SQLDelete(sql = "UPDATE activities SET soft_delete = true WHERE id=?")
+@SQLDelete(sql = "UPDATE notes SET soft_delete = true WHERE id=?")
 @Where(clause = "soft_delete = false")
 @EntityListeners(AuditingEntityListener.class)
 public class NoteEntity implements Serializable{
 
+    @Serial
     private static final long serialVersionUID = 1L;
 
     @Id
@@ -40,6 +43,10 @@ public class NoteEntity implements Serializable{
     @Column(nullable = false)
     private Boolean archived = Boolean.FALSE;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private UserEntity user;
+
     @Column(nullable = false)
     @CreatedDate
     private LocalDateTime createdAt;
@@ -53,8 +60,7 @@ public class NoteEntity implements Serializable{
 
     @PrePersist
     protected void onCreate() {
-        createdAt = LocalDateTime.now();
-        updatedAt = LocalDateTime.now();
+        createdAt = updatedAt = LocalDateTime.now();
     }
     @PreUpdate
     protected void onUpdate() {
