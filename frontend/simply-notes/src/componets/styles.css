@@ -10,7 +10,14 @@
 }
 
 .navbar-left {
-    flex: ;
+    flex: left;
+}
+
+.navbar-center {
+    flex: 1; /* Permite que "SimplyNotes" ocupe todo el espacio restante */
+    text-align: center; /* Centra el texto horizontalmente */
+    font-size: 24px; /* Ajusta el tamaño de fuente según tus preferencias */
+    font-weight: bold; /* Opcional: Añade negrita al texto */
 }
 
 .navbar-right {
@@ -35,7 +42,7 @@
     z-index: 1;
     border: 1px solid #ccc;
     padding: 10px;
-    border-radius: 4px;
+    border-radius: 5px;
 }
 
 .menu-option {
@@ -64,24 +71,75 @@
 /* CardNotes */
 
 .post-it {
-    background-color: yellow;
-    border: 1px solid black;
+    background: none repeat scroll 0 0 #97C02F; /* color de fondo */
     padding: 10px;
     width: 200px;
     height: 200px;
     position: relative;
     margin: 10px; 
+    color: #FFFFFF; /* color de texto */
 }
 
 .post-it::before {
+    -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3), -1px 1px 1px rgba(0, 0, 0, 0.2);
+    background: none repeat scroll 0 0 #658E15; /* color esquina */
+    border-color: #FFFFFF #FFFFFF #658E15 #658E15; /* color de borde */
+    border-style: solid;
+    border-width: 0 16px 16px 0;
     content: "";
+    display: block;
     position: absolute;
-    top: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    border-top: 10px solid transparent;
-    border-right: 10px solid transparent;
-    border-left: 10px solid transparent;
-    border-bottom: 10px solid black;
+    right: 0;
+    top: 0;
+    width: 0;
 }
 
+.note {
+    padding: 10px;
+    width: 200px;
+    height: 200px;
+    position: relative;
+    margin: 10px; 
+    background: none repeat scroll 0 0 #97C02F; /* color de fondo */
+    color: #FFFFFF; /* color de texto */
+    overflow: hidden;
+    padding: 1em 1.5em;
+}
+.note:before {
+    -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3), -1px 1px 1px rgba(0, 0, 0, 0.2);
+    background: none repeat scroll 0 0 #658E15; /* color esquina */
+    border-color: #FFFFFF #FFFFFF #658E15 #658E15; /* color de borde */
+    border-style: solid;
+    border-width: 0 16px 16px 0;
+    content: "";
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 0;
+}
+
+
+
+.note.blue {
+    background: none repeat scroll 0 0 #53A3B4; /* color de fondo */
+    color: #FFFFFF; /* color de texto */
+    margin: 2em auto;
+    overflow: hidden;
+    padding: 1em 1.5em;
+    position: relative;
+    width: 480px; /* ancho */
+}
+.note.blue:before {
+    -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3), -1px 1px 1px rgba(0, 0, 0, 0.2);
+    background: none repeat scroll 0 0 #658E15; /* color de fondo */
+    border-color: #FFFFFF #FFFFFF #658E15 #658E15; /* color de esquina */
+    border-style: solid;
+    border-width: 0 16px 16px 0;
+    content: "";
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 0;
+}
