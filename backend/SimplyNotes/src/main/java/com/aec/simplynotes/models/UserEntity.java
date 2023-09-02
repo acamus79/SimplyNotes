@@ -1,5 +1,6 @@
 package com.aec.simplynotes.models;
 
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,23 +11,23 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import jakarta.persistence.*;
-
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.List;
+
 @Entity
-@Table(name = "notes")
+@Table(name = "users")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@SQLDelete(sql = "UPDATE notes SET soft_delete = true WHERE id=?")
+@SQLDelete(sql = "UPDATE users SET soft_delete = true WHERE id=?")
 @Where(clause = "soft_delete = false")
 @EntityListeners(AuditingEntityListener.class)
-public class NoteEntity implements Serializable{
+public class UserEntity implements Serializable {
 
     @Serial
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 165749843L;
 
     @Id
     @GenericGenerator(name = "uuid", strategy = "uuid2")
@@ -34,18 +35,14 @@ public class NoteEntity implements Serializable{
     @Column(length = 36)
     private String id;
 
-    @Column(nullable = false, length = 60)
-    private String title;
-
-    @Column(columnDefinition = "TEXT", nullable = false)
-    private String content;
+    @Column(unique = true, nullable = false)
+    private String email;
 
     @Column(nullable = false)
-    private Boolean archived = Boolean.FALSE;
+    private String password;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    private UserEntity user;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<NoteEntity> notes;
 
     @Column(nullable = false)
     @CreatedDate
