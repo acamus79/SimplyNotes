@@ -9,5 +9,5 @@ import org.springframework.data.domain.Pageable;
 public interface NoteService extends BasicService<NoteEntity,String> {
     NoteDto saveNote(EntryNoteDto noteDto);
     NoteDto updateNote(EntryNoteDto noteDto, String id);
-    Page<NoteDto> getCategories(Pageable pageable);
+    Page<NoteDto> getNotes(Pageable pageable);
 }
