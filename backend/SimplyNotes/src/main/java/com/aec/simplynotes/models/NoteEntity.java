@@ -7,13 +7,14 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import jakarta.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 @Entity
-@Table(name = "activities")
+@Table(name = "notes")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -41,9 +42,22 @@ public class NoteEntity implements Serializable{
 
     @Column(nullable = false)
     @CreatedDate
-    private LocalDateTime timestamps;
+    private LocalDateTime createdAt;
+
+    @Column(nullable = false)
+    @LastModifiedDate
+    private LocalDateTime updatedAt;
 
     @Column(nullable = false)
     private Boolean softDelete = Boolean.FALSE;
 
+    @PrePersist
+    protected void onCreate() {
+        createdAt = LocalDateTime.now();
+        updatedAt = LocalDateTime.now();
+    }
+    @PreUpdate
+    protected void onUpdate() {
+        updatedAt = LocalDateTime.now();
+    }
 }
