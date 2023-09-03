@@ -1,5 +1,16 @@
-/* Navbar */
+html, body {
+    height: 100%; /* Asegura que el cuerpo ocupe el 100% de la altura de la ventana */
+    margin: 0;
+    padding: 0;
+}
 
+#root {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Asegura que el contenedor principal ocupe el 100% de la altura de la ventana */
+}
+
+/* Navbar */
 .navbar-container {
     display: flex;
     justify-content: space-between;
@@ -94,52 +105,87 @@
     width: 0;
 }
 
-.note {
-    padding: 10px;
-    width: 200px;
-    height: 200px;
-    position: relative;
-    margin: 10px; 
-    background: none repeat scroll 0 0 #97C02F; /* color de fondo */
-    color: #FFFFFF; /* color de texto */
-    overflow: hidden;
-    padding: 1em 1.5em;
-}
-.note:before {
-    -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3), -1px 1px 1px rgba(0, 0, 0, 0.2);
-    background: none repeat scroll 0 0 #658E15; /* color esquina */
-    border-color: #FFFFFF #FFFFFF #658E15 #658E15; /* color de borde */
-    border-style: solid;
-    border-width: 0 16px 16px 0;
-    content: "";
-    display: block;
-    position: absolute;
-    right: 0;
+/* ModalNote */
+.modal-overlay {
+    position: fixed;
     top: 0;
-    width: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999; /* Asegura que el modal esté por encima del contenido */
 }
 
-
-
-.note.blue {
-    background: none repeat scroll 0 0 #53A3B4; /* color de fondo */
-    color: #FFFFFF; /* color de texto */
-    margin: 2em auto;
-    overflow: hidden;
-    padding: 1em 1.5em;
+.modal {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
     position: relative;
-    width: 480px; /* ancho */
+    z-index: 10000; /* Asegura que el modal esté por encima del overlay */
 }
-.note.blue:before {
-    -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3), -1px 1px 1px rgba(0, 0, 0, 0.2);
-    background: none repeat scroll 0 0 #658E15; /* color de fondo */
-    border-color: #FFFFFF #FFFFFF #658E15 #658E15; /* color de esquina */
-    border-style: solid;
-    border-width: 0 16px 16px 0;
-    content: "";
-    display: block;
+
+.input-container {
+    margin-bottom: 10px; /* Espacio entre elementos */
+}
+
+.buttons{
+    display:flex;
+    justify-content:center ;
+
+}
+
+.close-button {
     position: absolute;
-    right: 0;
-    top: 0;
-    width: 0;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+
+.btn {
+    display: flex; /* Utilizar flexbox */
+    align-items: center; /* Centrar verticalmente */
+    margin-right: 5px;
+}
+
+.delete-icon {
+    color: #B32353; /* Color rojo */
+}
+
+.archive-icon{
+    color: #156c8e; /* Color azul */
+}
+
+.save-icon{
+    color: #97C02F; /* Color verde */
+}
+
+.icon{
+    font-size: 1.5em;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    color: white;
+    padding: 10px; /* Espaciado interior del footer */
+    position: fixed; /* Fijar el footer en la pantalla */
+    bottom: 0; /* Anclar el footer en la parte inferior */
+    width: 100%; /* Ocupar todo el ancho disponible */
+}
+
+.footer-left {
+    flex: left;
+    font-size: 1em;
+    /* font-weight: bold; /* Opcional: Añade negrita al texto */
+}
+
+.footer-center {
+    flex: 1; /* Permite que "SimplyNotes" ocupe todo el espacio restante */
+    text-align: center; /* Centra el texto horizontalmente */
 }
