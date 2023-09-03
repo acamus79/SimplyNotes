@@ -13,4 +13,6 @@ public class EntryNoteDto {
     @NotBlank
     @Size(max = 1800, message = "The maximum size for the content is 255 characters")
     private String content;
+
+    private Boolean archived;
 }
