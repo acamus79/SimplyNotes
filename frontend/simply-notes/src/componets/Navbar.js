@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import "./styles.css";
 
 function Navbar() {
     // Estado para controlar la visibilidad del menú
