@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import NoteCard from "./NoteCard";
 import NoteModal from "./NoteModal";
 import { getNotes, updateNote, createNote } from "../api";
+import "./styles.css";
 
 function Dashboard() {
 
