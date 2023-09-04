@@ -1,10 +1,52 @@
-# SimplyNotes
- A small Notes application developed in 3 days
+<div style="display: inline_block">
+  <a href="https://github.com/topics/java" target="_blank"><img align="center" alt="Made With JAVA"  src="https://img.shields.io/badge/Made%20With-Java-blue"></a>
+  <a href="https://github.com/topics/react" target="_blank"><img align="center" alt="Made With JAVA"  src="https://img.shields.io/badge/Made_With-React-blue"></a>
+  <a href="https://documenter.getpostman.com/view/23097436/2s9Y5eLybV" target="_blank"><img align="center" alt="POSTMAN DOC"  src="https://img.shields.io/badge/Postman-ApiDoc-orange"></a>
 
+
+# SimplyNotes - A small Notes application developed in 3 days
+
+¡Bienvenido a SimplyNotes! Esta es una aplicación web que te ayudará a organizar y gestionar tus notas de manera sencilla y eficiente. Ya sea que necesites capturar tus ideas, llevar un registro de tus tareas pendientes, o simplemente tomar notas rápidas, SimplyNotes está diseñado para simplificar tu vida y mantener todo en orden.
+
+## Características Destacadas
+
+- **Creación de Notas**: Crea nuevas notas con facilidad, proporcionando un título y el contenido de tu nota.
+
+- **Edición y Actualización**: Modifica tus notas en cualquier momento y mantén la información actualizada.
+
+- **Archivado**: Organiza tus notas archivándolas, lo que te permite concentrarte en lo que es importante en el momento.
+
+- **Eliminar Notas**: Elimina notas que ya no necesitas.
+
+- **Interfaz Amigable**: Una interfaz de usuario intuitiva y atractiva que facilita la navegación y el uso de la aplicación.
+
+## Cómo Iniciar
+
+Para comenzar a utilizar SimplyNotes, simplemente sigue estos pasos:
+
+1. **Clona el Repositorio**: Clona este repositorio en tu máquina local.
+
+2. **Instala Dependencias**: Ejecuta `npm install` para instalar las dependencias necesarias.
+
+3. **Inicia la Aplicación**: Ejecuta `npm start` para iniciar la aplicación en tu navegador. La aplicación se abrirá automáticamente o puedes acceder a ella a través de [http://localhost:3000](http://localhost:3000).
+
+4. **Comienza a Tomar Notas**: ¡Comienza a crear, editar y organizar tus notas de inmediato!
+
+
+
+## Tecnologías Utilizadas
+
+- **React**: La aplicación frontend se desarrolla utilizando React, una biblioteca de JavaScript de código abierto.
+
+- **API Backend**: SimplyNotes se integra con una API backend para gestionar las notas y la lógica de la aplicación.
+
+- **SweetAlert2**: Se utiliza SweetAlert2 para crear notificaciones y alertas interactivas en la aplicación.
+
+---
 
 # Backend de la Aplicación SimplyNotes
-
-Este es el backend de una aplicación web llamada SimplyNotes, que permite a los usuarios tomar notas, etiquetarlas y filtrarlas. El backend está desarrollado en Java 17 con Spring Boot 3 y utiliza una base de datos PostgreSQL para almacenar los datos de las notas y los usuarios.
+ 
+ El backend está desarrollado en Java 17 con Spring Boot 3 y utiliza una base de datos PostgreSQL para almacenar los datos de las notas y los usuarios.
 
 ## Requisitos
 
@@ -62,12 +104,18 @@ La documentación de la API está disponible en Posman, lo que facilita la explo
 - Hibernate
 - PostgreSQL
 
-## Autor
+## Contribuir
 
-- Adrian E. Camus
+Si te gustaría contribuir al desarrollo de SimplyNotes, ¡te damos la bienvenida! Siéntete libre de abrir problemas (issues) o enviar solicitudes de extracción (pull requests) con tus contribuciones.
 
 ## Licencia
 
-Este proyecto está bajo la licencia [Nombre de la Licencia]. Puedes encontrar más detalles en el archivo `LICENSE`.
+Este proyecto está bajo la Licencia MIT. Siéntete libre de utilizarlo y modificarlo de acuerdo a tus necesidades.
 
----
+¡Esperamos que disfrutes usando SimplyNotes para simplificar tu vida y mantener todas tus notas en orden!
+
+
+
+## Autor
+
+- Adrian E. Camus
