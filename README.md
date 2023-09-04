@@ -8,6 +8,9 @@
 
 ¡Bienvenido a SimplyNotes! Esta es una aplicación web que te ayudará a organizar y gestionar tus notas de manera sencilla y eficiente. Ya sea que necesites capturar tus ideas, llevar un registro de tus tareas pendientes, o simplemente tomar notas rápidas, SimplyNotes está diseñado para simplificar tu vida y mantener todo en orden.
 
+![03-09-2023_23-04-55](https://github.com/acamus79/SimplyNotes/assets/85143329/0af24197-5c2d-47d7-9f0e-180907edfea2)
+
+
 ## Características Destacadas
 
 - **Creación de Notas**: Crea nuevas notas con facilidad, proporcionando un título y el contenido de tu nota.
