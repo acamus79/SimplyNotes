@@ -10,6 +10,7 @@ const api = axios.create({
 });
 
 export const getNotes = () => api.get('/notes').then((response) => response.data.content);
+export const getArchive = () => api.get('/notes/archives').then((response) => response.data.content);
 export const createNote = (note) => api.post('/notes', note);
 export const updateNote = (note) => api.put(`/notes/${note.id}`, note);
 export const deleteNote = (noteId) => api.delete(`/notes/${noteId}`);

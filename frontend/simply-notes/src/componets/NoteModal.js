@@ -1,16 +1,12 @@
 import React, { useState } from "react";
-import { updateNote, deleteNote } from "../api";
+import { updateNote, createNote } from "../api";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSave, faTimes, faTrashAlt, faFile } from "@fortawesome/free-solid-svg-icons";
+import { faSave, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { Tooltip } from "react-tooltip";
+
 import "./styles.css";
 
-function NoteModal({ note, onClose }) {
-
-  const send = () => {
-    
-    console.log("OnCLick")
-  }
+function NoteModal({ note, onClose  }) {
 
   const [editedNote, setEditedNote] = useState(note);
 
@@ -19,25 +15,20 @@ function NoteModal({ note, onClose }) {
     setEditedNote({ ...editedNote, [name]: value });
   };
 
-  const handleDeleteClick = async () => {
-    try {
-      await deleteNote(editedNote.id); // Borrar una nota
-      onClose();
-    } catch (error) {
-      console.error("Error al eliminar la nota:", error);
-    }
-  };
-
-  const handleArchiveClick = () => {
-    setEditedNote({ ...editedNote, archived: !editedNote.archived });
-  };
-
   const handleSubmit = async (event) => {
     event.preventDefault(); // Evita que el formulario se envíe automáticamente
     
     try {
-      // Envía la nota editada al servidor utilizando la función updateNote
-      await updateNote(editedNote);
+      if (note.title === '') {
+        
+        console.log(setEditedNote);
+        // Si es una nueva nota, llama a createNote en lugar de updateNote
+        await createNote(editedNote);
+      } else {
+        // Si no es una nueva nota, llama a updateNote
+        await updateNote(editedNote);
+      }
+      window.location.reload();
       // Luego, cierra el modal
       onClose();
     } catch (error) {
@@ -50,26 +41,26 @@ function NoteModal({ note, onClose }) {
     <div className="modal-overlay">
     <div className="modal">
       <button
-            className="close-button"
+            className="close-button btn"
             onClick={onClose}
           >
             <FontAwesomeIcon icon={faTimes} />
           </button>
       <h2>Editar Nota</h2>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="title">Título:</label>
         <div className="input-container">
-        <input
-          type="text"
-          id="title"
-          name="title"
-          value={editedNote.title}
-          onChange={handleFieldChange}
-        />
+          <label htmlFor="title">Título:</label>
+          <input
+            type="text"
+            id="title"
+            name="title"
+            value={editedNote.title}
+            onChange={handleFieldChange}
+          />
         </div>
-        <label htmlFor="content">Contenido:</label>
+        <label htmlFor="content">Anotación:</label>
         <div className="input-container">
-        <textarea
+        <textarea className="text-area"
           id="content"
           name="content"
           value={editedNote.content}
@@ -77,26 +68,9 @@ function NoteModal({ note, onClose }) {
         />
         </div>
         <div className="buttons">
-            <button
-              type="button"
-              onClick={handleDeleteClick}
-              className="btn"
-            >
-              <FontAwesomeIcon icon={faTrashAlt} className="icon delete-icon" />
-              &nbsp; Borrar
-            </button>
-            <button
-              className='btn'
-              type="button"
-              onClick={handleArchiveClick}
-              disabled={editedNote.archived}
-            >
-              <FontAwesomeIcon icon={faFile} className="icon archive-icon" />
-              &nbsp; Archivar
-            </button>
             <button 
               className='btn'
-              type="submit" onClick={send}
+              type="submit"
               data-tip="Guardar" // Texto del tooltip
               data-for="saveTooltip" // Identificador del tooltip
             >
