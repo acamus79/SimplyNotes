@@ -39,7 +39,7 @@ public class NoteSeeder implements CommandLineRunner{
             NoteEntity n5 = new NoteEntity(null, "Tecnologías utilizadas", "Para el frontend se utilizo React y se comunica con una API REST desarrollada en Java 17 con SpringBoot sobre un motor de base de datos PostgreSQL",
                     false,null, LocalDateTime.now(), LocalDateTime.now(),false);
             NoteEntity n6 = new NoteEntity(null, "Agradecimiento", "Desarrollar esto omo un desafio en tres dias fue para mi un gran paso de aprendizaje por lo qu estoy muy agradecido",
-                    false,null, LocalDateTime.now(), LocalDateTime.now(),false);
+                    true,null, LocalDateTime.now(), LocalDateTime.now(),false);
             NoteEntity n7 = new NoteEntity(null, "Funcionalidades", "Creo que faltan cosas para agregar, me gustaria poder identificar las notas que contengan contraseñas y encriptarlas, tambien usar Electron para hacerla una aplicacion de escritorio",
                     true,null, LocalDateTime.now(), LocalDateTime.now(),false);
             NoteEntity n8 = new NoteEntity(null, "Recordatorios", "Cosas que me falto de terminar agrtegar seguridad a la api con JWT y implementar un Login",
