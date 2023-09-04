@@ -25,8 +25,10 @@ public class NoteServiceImpl extends BasicServiceImpl<NoteEntity, String, INoteR
     }
 
     /**
-     * @param dto
-     * @return
+     * Save a new note based on an EntryNoteDto object.
+     *
+     * @param dto The EntryNoteDto object containing note data.
+     * @return A NoteDto object representing the saved note.
      */
     @Override
     @Transactional
@@ -37,8 +39,12 @@ public class NoteServiceImpl extends BasicServiceImpl<NoteEntity, String, INoteR
     }
 
     /**
-     * @param dto
-     * @return
+     * Update an existing note based on an EntryNoteDto object and an ID.
+     *
+     * @param dto The EntryNoteDto object containing updated note data.
+     * @param id  The ID of the note to be updated.
+     * @return A NoteDto object representing the updated note.
+     * @throws ResponseStatusException If the note does not exist, an exception with HTTP status 404 (NOT_FOUND) is thrown.
      */
     @Override
     @Transactional
@@ -56,7 +62,7 @@ public class NoteServiceImpl extends BasicServiceImpl<NoteEntity, String, INoteR
 
 
     /**
-     * Gets a paginated page of notes.
+     * Get a paginated page of notes.
      *
      * @param pageable Pageable object containing pagination information.
      * @return A page of NoteDto objects.
@@ -64,23 +70,45 @@ public class NoteServiceImpl extends BasicServiceImpl<NoteEntity, String, INoteR
      */
     @Override
     public Page<NoteDto> getNotes(Pageable pageable) {
-
         List<NoteEntity> notes = repository.searchAllNonDeleted();
-        List<NoteDto> response;
+        return getNoteDtos(pageable, notes);
+    }
+
+    /**
+     * Get a page of archived notes.
+     *
+     * @param pageable Pageable object containing pagination information.
+     * @return A page of NoteDto objects for archived notes.
+     * @throws ResponseStatusException If no archived notes are found, an exception with HTTP status 404 (NOT_FOUND) is thrown.
+     */
+    @Override
+    public Page<NoteDto> findArchives(Pageable pageable) {
+        List<NoteEntity> notes = repository.searchAllArchived();
+        return getNoteDtos(pageable, notes);
+    }
+
+    /**
+     * Retrieves a paginated list of NoteDto objects from a list of NoteEntity objects.
+     *
+     * @param pageable Pageable object containing pagination information.
+     * @param notes    List of NoteEntity objects to be converted to NoteDto objects.
+     * @return A page of NoteDto objects.
+     * @throws ResponseStatusException If the list of notes is empty, an exception with HTTP status 404 (NOT_FOUND) is thrown.
+     */
+    private Page<NoteDto> getNoteDtos(Pageable pageable, List<NoteEntity> notes) {
+        List<NoteDto> archives;
 
         if(!notes.isEmpty()){
-            response = ObjectMapperUtils.mapAll(notes, NoteDto.class);
+            archives = ObjectMapperUtils.mapAll(notes, NoteDto.class);
 
             final int start = (int) pageable.getOffset();
-            final int end = Math.min((start + pageable.getPageSize()), response.size());
+            final int end = Math.min((start + pageable.getPageSize()), archives.size());
 
-            return new PageImpl<>(response.subList(start, end), pageable, response.size());
+            return new PageImpl<>(archives.subList(start, end), pageable, archives.size());
         }else {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, NO_EXIST);
         }
-
     }
-
 
 
 }

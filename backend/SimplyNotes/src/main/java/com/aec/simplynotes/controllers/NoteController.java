@@ -15,6 +15,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.validation.Errors;
 
+import java.util.Map;
+
 @RestController
 @RequestMapping("/api/notes")
 @RequiredArgsConstructor
@@ -59,12 +61,37 @@ public class NoteController {
         return ResponseEntity.status(HttpStatus.OK).body(service.updateNote(dto, id));
     }
 
+    /**
+     * Get a paginated page of notes.
+     *
+     * @param pageable Pageable object containing pagination information.
+     * @return A page of NoteDto objects.
+     */
     @GetMapping()
     public ResponseEntity<Page<NoteDto>> getNotes(
             @Parameter(hidden = true) @PageableDefault(size = 12) Pageable pageable) {
         return ResponseEntity.ok(service.getNotes(pageable));
     }
 
+    /**
+     * Get a paginated page of archived notes.
+     *
+     * @param pageable Pageable object containing pagination information.
+     * @return A page of NoteDto objects.
+     */
+    @GetMapping("/archives")
+    public ResponseEntity<Page<NoteDto>> getNotesArchived(
+            @Parameter(hidden = true) @PageableDefault(size = 12) Pageable pageable) {
+        return ResponseEntity.ok(service.findArchives(pageable));
+    }
+
+    /**
+     * Delete a note by its ID.
+     *
+     * @param id The ID of the note to delete.
+     * @return An HTTP response with status NO_CONTENT if the note was successfully deleted
+     *         or NOT_FOUND if the note was not found.
+     */
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteNote(
             @Parameter(description = "Id of the Note to delete.", example = "528f22c3-1f9c-493f-8334-c70b83b5b885")
@@ -73,7 +100,10 @@ public class NoteController {
             service.deleteById(id);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } else {
-            return new ResponseEntity<>("Nota no encontrada", HttpStatus.NOT_FOUND);
+            return ResponseEntity
+                    .status(HttpStatus.NOT_FOUND)
+                    .header("Content-Type", "application/json")
+                    .body("{\"message\": \"Note not found\"}");
         }
     }
 }

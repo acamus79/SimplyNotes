@@ -1,0 +1,331 @@
+/* SimplyNotes Style Sheet, 2023 by acamus79 */
+
+/* Estilos generales */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+#root {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.btn {
+    display: flex;
+    align-items: center;
+    margin-right: 5px;
+    border: none;
+    background: none;
+}
+
+.btn:hover {
+    transform: scale(1.5) rotate(5deg);
+    cursor: pointer;
+    border: none;
+}
+
+/* Navbar */
+.navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    color: white;
+    padding: 10px 20px 10px 10px;
+}
+
+.navbar-left {
+    flex: left;
+}
+
+.navbar-center {
+    flex: 1;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.navbar-right {
+    display: flex;
+    align-items: center;
+}
+
+.menu-icon {
+    cursor: pointer;
+    font-size: 24px;
+    margin-left: 10px;
+}
+
+.menu-options {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    background-color: #333;
+    color: whitesmoke;
+    left: 1.5em;
+    top: 2.5em;
+    z-index: 1;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.menu-option {
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.menu-option:hover {
+    background-color: #555;
+}
+
+.menu-show {
+    display: block;
+}
+
+.nav-btn {
+    display: inline;
+    margin-right: 2em;
+    font-size: 1.5em !important;
+}
+
+/* Dashboard */
+.dashboard-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.dsh-header {
+    font-size: 1em;
+    margin-top: 1em;
+}
+
+/* CardNotes */
+.note-card {
+    position: relative;
+}
+
+.card-content {
+    max-height: 200px;
+    text-align: left;
+    overflow-y: auto;
+}
+
+.post-it {
+    background: #97C02F;
+    padding: 10px;
+    width: 200px;
+    height: 200px;
+    position: relative;
+    margin: 2em;
+    color: #FFFFFF;
+    overflow-y: auto;
+}
+
+.post-it::before {
+    background: #658E15;
+    border-color: #FFFFFF #FFFFFF #658E15 #658E15;
+    border-style: solid;
+    border-width: 0 16px 16px 0;
+    content: "";
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 0;
+}
+
+.post-it:hover {
+    cursor: pointer;
+}
+
+.archived-post-it {
+    background: #53A3B4;
+    padding: 10px;
+    width: 200px;
+    height: 200px;
+    position: relative;
+    margin: 2em;
+    color: #FFFFFF;
+}
+
+.archived-post-it:before {
+    background: #156c8e;
+    border-color: #FFFFFF #FFFFFF #156c8e #156c8e;
+    border-style: solid;
+    border-width: 0 16px 16px 0;
+    content: "";
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 0;
+}
+
+.actions {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 10px;
+}
+
+.btn-card {
+    display: flex;
+    align-items: center;
+    margin-right: 15px;
+}
+
+/* ModalNote */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.modal {
+    background-color: rgba(255, 255, 255, 0.6);
+    width: 40%;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    position: relative;
+    z-index: 10000;
+}
+
+.input-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.input-container label {
+    flex: 1;
+    margin-right: 10px;
+}
+
+.input-container input,
+.input-container textarea {
+    flex: 4;
+}
+
+.md-input{
+    width: 80%;
+}
+
+.text-area {
+    width: 80%;
+    height: 150px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+}
+
+.close-button {
+    position: absolute;
+    background: none;
+    border: none;
+    text-size-adjust: 3em;
+    top: 10px;
+    right: 10px;
+}
+
+.delete-icon {
+    color: #B32353;
+}
+
+.archive-icon {
+    color: #53A3B4;
+}
+
+.save-icon {
+    color: #97C02F;
+}
+
+.edit-icon {
+    color: #FF860E;
+}
+
+.icon {
+    font-size: 1.5em;
+}
+
+/* Footer */
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.footer-left {
+    flex: left;
+    font-size: 1em;
+}
+
+.footer-center {
+    flex: 1;
+    text-align: center;
+}
+
+.footer-rigth {
+    flex: right;
+    margin-right: 2em;
+}
+
+.footer-icon {
+    margin-right: 5%;
+    color: #FFFFFF;
+    font-size: 2em;
+}
+
+.footer-icon:hover {
+    transform: scale(1.5) rotate(5deg);
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .footer-icon {
+        font-size: 1em;
+    }
+    .footer-rigth {
+        display: none;
+    }
+    .footer-left {
+        display: none;
+    }
+}
+
+
+/* Sweet Alert */
+div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm {
+    border: 0;
+    border-radius: 0.25em;
+    background: initial;
+    background-color: #97C02F !important;
+    color: #fff;
+    font-size: 1em;
+}
+
+div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm:focus {
+    box-shadow: 0 0 0 3px rgba(155, 230, 140, 0.5);
+}
