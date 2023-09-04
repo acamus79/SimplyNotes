@@ -20,7 +20,6 @@ function NoteModal({ note, onClose  }) {
     
     try {
       if (note.title === '') {
-        
         console.log(setEditedNote);
         // Si es una nueva nota, llama a createNote en lugar de updateNote
         await createNote(editedNote);
@@ -46,11 +45,12 @@ function NoteModal({ note, onClose  }) {
           >
             <FontAwesomeIcon icon={faTimes} />
           </button>
-      <h2>Editar Nota</h2>
+      <h2>Crear/Editar Nota</h2>
       <form onSubmit={handleSubmit}>
         <div className="input-container">
           <label htmlFor="title">Título:</label>
           <input
+            className="md-input"
             type="text"
             id="title"
             name="title"
