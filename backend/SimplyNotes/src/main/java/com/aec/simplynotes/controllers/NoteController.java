@@ -4,6 +4,7 @@ import com.aec.simplynotes.dto.request.EntryNoteDto;
 import com.aec.simplynotes.dto.response.NoteDto;
 import com.aec.simplynotes.exeptions.ValidationException;
 import com.aec.simplynotes.services.NoteService;
+import io.swagger.v3.oas.annotations.Parameter;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -68,7 +69,7 @@ public class NoteController {
      */
     @GetMapping()
     public ResponseEntity<Page<NoteDto>> getNotes(
-            @PageableDefault(size = 12) Pageable pageable) {
+            @Parameter(hidden = true) @PageableDefault(size = 12) Pageable pageable) {
         return ResponseEntity.ok(service.getNotes(pageable));
     }
 
@@ -80,7 +81,7 @@ public class NoteController {
      */
     @GetMapping("/archives")
     public ResponseEntity<Page<NoteDto>> getNotesArchived(
-            @PageableDefault(size = 12) Pageable pageable) {
+            @Parameter(hidden = true) @PageableDefault(size = 12) Pageable pageable) {
         return ResponseEntity.ok(service.findArchives(pageable));
     }
 
@@ -93,6 +94,7 @@ public class NoteController {
      */
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteNote(
+            @Parameter(description = "Id of the Note to delete.", example = "528f22c3-1f9c-493f-8334-c70b83b5b885")
             @PathVariable String id) {
         if (service.existById(id)) {
             service.deleteById(id);
