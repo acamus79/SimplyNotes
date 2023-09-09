@@ -1,7 +1,6 @@
 package com.aec.simplynotes.seeders;
 import com.aec.simplynotes.models.NoteEntity;
 import com.aec.simplynotes.repositories.INoteRepository;
-import jakarta.validation.constraints.NotEmpty;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -15,7 +14,7 @@ public class NoteSeeder implements CommandLineRunner{
     private final INoteRepository repository;
 
     @Override
-    public void run(String... args) throws Exception {
+    public void run(String... args) {
         loadActivityData();
     }
 
@@ -24,13 +23,14 @@ public class NoteSeeder implements CommandLineRunner{
             NoteEntity n1 = new NoteEntity(null, "Bienvenido/a a SimplyNotes",
                     "SimplyNote esta dedicado a simplificar la forma en que tomas y gestionas tus notas. Ya sea que necesites tomar apuntes rápidos, hacer listas de tareas o simplemente recordar ideas importantes, SimplyNotes está aquí para ayudarte.",
                     false,null, LocalDateTime.now(), LocalDateTime.now(),false);
-            NoteEntity n2 = new NoteEntity(null, "¿Qué puedes hacer con SimplyNotes?", "Crear notas: Crea nuevas notas de forma rápida y sencilla. Solo tienes que hacer clic en el botón \"Nueva Nota\" y empezar a escribir.\n" +
-                    "\n" +
-                    "Editar y personalizar: Modifica tus notas en cualquier momento. Cambia el título, el contenido y más para adaptar tus notas a tus necesidades.\n" +
-                    "\n" +
-                    "Archivar tus ideas: ¿Tienes notas que ya no necesitas en tu vista principal? Archívalas para mantener tu espacio de trabajo organizado.\n" +
-                    "\n" +
-                    "Fácil de usar: SimplyNotes ha sido diseñado pensando en la simplicidad y la eficiencia. No te preocupes por aprender un complicado sistema; comienza a utilizarlo de inmediato.",
+            NoteEntity n2 = new NoteEntity(null, "¿Qué puedes hacer con SimplyNotes?", """
+                    Crear notas: Crea nuevas notas de forma rápida y sencilla. Solo tienes que hacer clic en el botón "Nueva Nota" y empezar a escribir.
+
+                    Editar y personalizar: Modifica tus notas en cualquier momento. Cambia el título, el contenido y más para adaptar tus notas a tus necesidades.
+
+                    Archivar tus ideas: ¿Tienes notas que ya no necesitas en tu vista principal? Archívalas para mantener tu espacio de trabajo organizado.
+
+                    Fácil de usar: SimplyNotes ha sido diseñado pensando en la simplicidad y la eficiencia. No te preocupes por aprender un complicado sistema; comienza a utilizarlo de inmediato.""",
                     false,null, LocalDateTime.now(), LocalDateTime.now(),false);
             NoteEntity n3 = new NoteEntity(null, "Sobre mi", "Me llamo Adrian Camus, Soy Padre, me esfuerzo por ser un capacitador, desarrollador de medios digitales, programador en constante formación, un analista con experiencia, pero sobre todo me considero una persona que busca soluciones, caminos y posibilidades.",
                     false,null, LocalDateTime.now(), LocalDateTime.now(),false);
